@@ -1,8 +1,4 @@
-Joystick Gremlin
-================
-
-Introduction
-------------
+# **Joystick Gremlin**
 
 Joystick Gremlin is a program that allows the configuration of joystick like
 devices, similar to what CH Control Manager and Thrustmaster's T.A.R.G.E.T. do
@@ -15,39 +11,38 @@ managing joysticks, Joystick Gremlin also provides keyboard macros, a flexible
 mode system, scripting using Python, and many other features.
 
 The main features are:
-- Works with arbitrary joystick like devices
-- User interface for common configuration tasks
-- Merging of multiple physical devices into a single virtual device
-- Axis response curve and dead zone configuration
-- Arbitrary number of modes with inheritance and customizable mode switching
-- Keyboard macros for joystick buttons and keyboard keys
-- Python scripting
+  - Works with arbitrary joystick like devices
+  - User interface for common configuration tasks
+  - Merging of multiple physical devices into a single virtual device
+  - Axis response curve and dead zone configuration
+  - Arbitrary number of modes with inheritance and customizable mode switching
+  - Keyboard macros for joystick buttons and keyboard keys
+  - Python scripting
 
 Joystick Gremlin provides a graphical user interface which allows commonly
 performed tasks, such as input remapping, axis response curve setups, and macro
 recording to be performed easily. Functionality that is not accessible via the
-UI can be implemented through custom modules. 
+UI can be implemented through custom modules.
 
 
-Used Software & Other Sources
------------------------------
+# **Used Software**
 Joystick Gremlin uses the following software and resources:
 
 - [pyinstaller](http://www.pyinstaller.org/)
-- [PyQT5](http://www.riverbankcomputing.co.uk/software/pyqt/intro)
+- [PyQt5](http://www.riverbankcomputing.co.uk/software/pyqt/intro)
 - [PyWin32](http://sourceforge.net/projects/pywin32)
-- [vJoy](http://vjoystick.sourceforge.net)
-- [Python 3.4](https://www.python.org)
+- [vJoy 2.1.9](https://github.com/jshafer817/vJoy/releases/download/v2.1.9.1/vJoySetup.exe)
+- [Python 3.6.8](https://www.python.org)
 - [Modern UI Icons](http://modernuiicons.com/)
+- [Microsoft Visual Studio Build Tools (Visual C++ 14.0)](https://az764295.vo.msecnd.net/stable/441438abd1ac652551dbe4d408dfcec8a499b8bf/VSCodeUserSetup-x64-1.75.1.exe) <!-- TODO: add tutorial -->
 
-Currently the 32bit version of Python is needed and the following packages should be installed via PiP to get the source running:
- 
- - PyQT5
- - pypiwin32
- 
+# **Building from Source**
 
-Generating the MSI Installer
-----------------------------
+Currently the 32-bit version of Python (3.6.8) is needed and the following packages should be installed via PiP to get the source running:
+
+```shell
+> pip install pyinstaller PyQt5==5.13.2 pypiwin32 reportlab
+```
 
 The job of turning the Python code in a windows executable and
 packaging everything up into an installable MSI file is performed
@@ -55,11 +50,14 @@ by [pyinstaller](http://www.pyinstaller.org/) and
 [wix](http://wixtoolset.org/). The steps needed to build the code
 and assemble it into the installer is automated using a batch
 script and can be run as:
-  ```
-  deploy.bat
-  ```
+
+```shell
+> deploy.bat
+```
+
 To simply generate the executable code without the MSI installer the
 following command can be used:
-  ```
-  pyinstaller -y --clean joystick_gremlin.spec
-  ```
+
+```shell
+> pyinstaller -y --clean joystick_gremlin.spec
+```

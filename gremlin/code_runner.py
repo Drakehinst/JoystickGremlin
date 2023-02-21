@@ -193,11 +193,31 @@ class CodeRunner:
                                     )
 
             # Create merge axis callbacks
+            d_joystick_guid_to_id = dict()
+            for guid in profile.devices:
+                device_summary = dill.DILL._dll.get_device_information_by_guid(guid.ctypes)
+                d_joystick_guid_to_id[str(guid)] = device_summary.joystick_id
             for entry in profile.merge_axes:
+                id_joystick_lower = d_joystick_guid_to_id[str(entry["lower"]["device_guid"])]
+                id_joystick_upper = d_joystick_guid_to_id[str(entry["upper"]["device_guid"])]
+                id_axis_lower = entry["lower"]["axis_id"]
+                id_axis_upper = entry["upper"]["axis_id"]
+                d_axis_lower = profile.settings.joystick_initial_values.get(id_joystick_lower, None)
+                d_axis_upper = profile.settings.joystick_initial_values.get(id_joystick_upper, None)
+                if d_axis_lower is None:
+                    l_axis_lower = 0.0
+                else:
+                    l_axis_lower = d_axis_lower.get(id_axis_lower, 0.0)
+                if d_axis_upper is None:
+                    l_axis_upper = 0.0
+                else:
+                    l_axis_upper = d_axis_upper.get(id_axis_upper, 0.0)
+                l_axis_values = [l_axis_lower, l_axis_upper]
                 merge_axis = MergeAxis(
-                    entry["vjoy"]["vjoy_id"],
-                    entry["vjoy"]["axis_id"],
-                    entry["operation"]
+                    vjoy_id = entry["vjoy"]["vjoy_id"],
+                    input_id = entry["vjoy"]["axis_id"],
+                    l_axis_values = l_axis_values,
+                    operation = entry["operation"],
                 )
                 self._merge_axes.append(merge_axis)
 
@@ -356,9 +376,10 @@ class MergeAxis:
             self,
             vjoy_id: int,
             input_id: int,
+            l_axis_values: list,
             operation: gremlin.common.MergeAxisOperation
     ):
-        self.axis_values = [0.0, 0.0]
+        self.axis_values = l_axis_values
         self.vjoy_id = vjoy_id
         self.input_id = input_id
         self.operation = operation

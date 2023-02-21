@@ -84,6 +84,21 @@ class ProfileSettingsWidget(QtWidgets.QWidget):
         self.scroll_layout.addWidget(vjoy_as_input_widget)
         vjoy_as_input_widget.changed.connect(lambda: self.refresh_ui(True))
 
+        # Joystick axis initialization value setup
+        for dev in sorted(
+                gremlin.joystick_handling.physical_devices(),
+                key=lambda x: x.joystick_id
+        ):
+            widget = QtWidgets.QGroupBox("{} - Initial Axis Values".format(dev.name))
+            box_layout = QtWidgets.QVBoxLayout()
+            widget.setLayout(box_layout)
+            box_layout.addWidget(JoystickAxisDefaultsWidget(
+                dev,
+                self.profile_settings
+            ))
+
+            self.scroll_layout.addWidget(widget)
+
         # vJoy axis initialization value setup
         for dev in sorted(
                 gremlin.joystick_handling.vjoy_devices(),
@@ -203,6 +218,70 @@ class DefaultModeSelector(QtWidgets.QGroupBox):
             self.profile_data.startup_mode = None
         else:
             self.profile_data.startup_mode = self.dropdown.currentText()
+
+
+class JoystickAxisDefaultsWidget(QtWidgets.QWidget):
+
+    """UI widget allowing modification of axis initialization values."""
+
+    def __init__(self, joy_data, profile_data, parent=None):
+        """Creates a new UI widget.
+
+        :param joy_data JoystickDeviceData object containing device information
+        :param profile_data profile settings managed by the widget
+        :param parent the parent of this widget
+        """
+        super().__init__(parent)
+
+        self.joy_data = joy_data
+        self.profile_data = profile_data
+        self.main_layout = QtWidgets.QGridLayout(self)
+        self.main_layout.setColumnMinimumWidth(0, 100)
+        self.main_layout.setColumnStretch(2, 1)
+
+        self._spin_boxes = []
+        self._create_ui()
+
+    def _create_ui(self):
+        """Creates the UI elements."""
+        for i in range(self.joy_data.axis_count):
+            axis_name = "Axis {:d}".format(i+1)
+            self.main_layout.addWidget(
+                QtWidgets.QLabel(axis_name),
+                i,
+                0
+            )
+
+            box = gremlin.ui.common.DynamicDoubleSpinBox()
+            box.setRange(-1, 1)
+            box.setSingleStep(0.05)
+            box.setValue(self.profile_data.get_initial_joystick_axis_value(
+                self.joy_data.joystick_id,
+                i+1
+            ))
+            box.valueChanged.connect(self._create_value_cb(i+1))
+
+            self.main_layout.addWidget(box, i, 1)
+
+    def _create_value_cb(self, axis_id):
+        """Creates a callback function which updates axis values.
+
+        :param axis_id id of the axis to change the value of
+        :return callback customized for the given axis_id
+        """
+        return lambda x: self._update_axis_value(axis_id, x)
+
+    def _update_axis_value(self, axis_id, value):
+        """Updates an axis' default value.
+
+        :param axis_id id of the axis to update
+        :param value the value to update the axis to
+        """
+        self.profile_data.set_initial_joystick_axis_value(
+            self.joy_data.joystick_id,
+            axis_id,
+            value
+        )
 
 
 class VJoyAxisDefaultsWidget(QtWidgets.QWidget):

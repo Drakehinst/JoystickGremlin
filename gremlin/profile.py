@@ -1198,6 +1198,7 @@ class Settings:
         """
         self.parent = parent
         self.vjoy_as_input = {}
+        self.joystick_initial_values = {}
         self.vjoy_initial_values = {}
         self.startup_mode = None
         self.default_delay = 0.05
@@ -1227,6 +1228,17 @@ class Settings:
                 vjoy_node.set("id", safe_format(vid, int))
                 node.append(vjoy_node)
 
+        # Process Joystick axis initial values
+        for vid, data in self.joystick_initial_values.items():
+            joystick_node = ElementTree.Element("joystick-axis-initial")
+            joystick_node.set("id", safe_format(vid, int))
+            for aid, value in data.items():
+                axis_node = ElementTree.Element("axis")
+                axis_node.set("id", safe_format(aid, int))
+                axis_node.set("value", safe_format(value, float))
+                joystick_node.append(axis_node)
+            node.append(joystick_node)
+        
         # Process vJoy axis initial values
         for vid, data in self.vjoy_initial_values.items():
             vjoy_node = ElementTree.Element("vjoy")
@@ -1264,6 +1276,16 @@ class Settings:
             vid = safe_read(vjoy_node, "id", int)
             self.vjoy_as_input[vid] = True
 
+        # joystick initialization values
+        self.joystick_initial_values = {}
+        for joystick_node in node.findall("joystick-axis-initial"):
+            vid = safe_read(joystick_node, "id", int)
+            self.joystick_initial_values[vid] = {}
+            for axis_node in joystick_node.findall("axis"):
+                aid = safe_read(axis_node, "id", int)
+                value = safe_read(axis_node, "value", float, 0.0)
+                self.joystick_initial_values[vid][aid] = value
+
         # vjoy initialization values
         self.vjoy_initial_values = {}
         for vjoy_node in node.findall("vjoy"):
@@ -1273,6 +1295,30 @@ class Settings:
                 aid = safe_read(axis_node, "id", int)
                 value = safe_read(axis_node, "value", float, 0.0)
                 self.vjoy_initial_values[vid][aid] = value
+
+    def get_initial_joystick_axis_value(self, vid, aid):
+        """Returns the initial value a Joystick axis should use.
+
+        :param vid the id of the physical joystick
+        :param aid the id of the axis
+        :return default value for the specified axis
+        """
+        value = 0.0
+        if vid in self.joystick_initial_values:
+            if aid in self.joystick_initial_values[vid]:
+                value = self.joystick_initial_values[vid][aid]
+        return value
+
+    def set_initial_joystick_axis_value(self, vid, aid, value):
+        """Sets the default value for a particular Joystick axis.
+
+        :param vid the id of the physical joystick
+        :param aid the id of the axis
+        :param value the default value to use with the specified axis
+        """
+        if vid not in self.joystick_initial_values:
+            self.joystick_initial_values[vid] = {}
+        self.joystick_initial_values[vid][aid] = value
 
     def get_initial_vjoy_axis_value(self, vid, aid):
         """Returns the initial value a vJoy axis should use.
