@@ -105,8 +105,7 @@ class MapToKeyboardFunctor(AbstractFunctor):
             self.press.press(gremlin.macro.key_from_code(key[0], key[1]))
 
         self.release = gremlin.macro.Macro()
-        # Execute release in reverse order
-        for key in reversed(action.keys):
+        for key in action.keys:
             self.release.release(gremlin.macro.key_from_code(key[0], key[1]))
 
     def process_event(self, event, value):
