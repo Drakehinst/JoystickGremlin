@@ -32,7 +32,7 @@ Supprimez toutes les actions `Remap` sur les deux axes à fusionner (ici *"T-Rud
 
 :warning: **Attention!** :warning:
 
-Selon leur configuration, les actions `Response Curve` peuvent fausser la fusion des axes. Si vous ne parvenez pas au résultat attendu à la fin de ce tutoriel, supprimez-les également à cette étape, quitte à les reconfigurer correctement plus tard. ;)
+Selon leur configuration, les actions `Response Curve` peuvent fausser la fusion des axes. Si vous ne parvenez pas au résultat attendu à la fin de ce tutoriel, supprimez-les également à cette étape, quitte à les reconfigurer correctement plus tard. 😉
 
 
 ## Étape 5
@@ -89,7 +89,7 @@ fusionnés (ici `T-Rudder / Axes - Current`, *"Axis 1"* et *"Axis 2"*, c'est-à-
     5. Relâchez **complètement** l'axe de marche avant.
     6. Vérifiez que la valeur de l'axe du vJoy passe bien de `0%` à `-100%`.
     
-**:rocket: Si tout est fonctionnel, vous en avez terminé avec la configuration ! :)**
+**:rocket: Si tout est fonctionnel, vous en avez terminé avec la configuration ! 😄**
 
 ---
 
@@ -101,4 +101,4 @@ fusionnés (ici `T-Rudder / Axes - Current`, *"Axis 1"* et *"Axis 2"*, c'est-à-
 
 En cas de doute, mettez à jour vos raccourcis pour les rediriger vers la version télechargée ici.
 
-**Le profil que vous avez sauvegardé avec cette version est 100% rétro-compatible avec la version `13.3` officielle de Joystick Gremlin. ;)**
+**Le profil que vous avez sauvegardé avec cette version est 100% rétro-compatible avec la version `13.3` officielle de Joystick Gremlin. 😉**
