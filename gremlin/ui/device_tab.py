@@ -689,7 +689,7 @@ def input_item_index_lookup(index, input_items):
         elif index < axis_count + button_count + hat_count:
             if not input_items.has_data(
                     InputType.JoystickHat,
-                    axis_count + button_count + hat_count
+                    index - axis_count - button_count + 1
             ):
                 logging.getLogger("system").error(
                     "Attempting to retrieve non existent input, "
