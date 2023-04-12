@@ -1202,6 +1202,8 @@ class Settings:
         self.vjoy_initial_values = {}
         self.startup_mode = None
         self.default_delay = 0.05
+        # TODO TempoAdvanced
+        # self.b_bind_tempo_advanced = False
 
     def to_xml(self):
         """Returns an XML node containing the settings.
@@ -1229,9 +1231,9 @@ class Settings:
                 node.append(vjoy_node)
 
         # Process Joystick axis initial values
-        for vid, data in self.joystick_initial_values.items():
+        for id_joy, data in self.joystick_initial_values.items():
             joystick_node = ElementTree.Element("joystick-axis-initial")
-            joystick_node.set("id", safe_format(vid, int))
+            joystick_node.set("id", safe_format(id_joy, int))
             for aid, value in data.items():
                 axis_node = ElementTree.Element("axis")
                 axis_node.set("id", safe_format(aid, int))
@@ -1279,12 +1281,12 @@ class Settings:
         # joystick initialization values
         self.joystick_initial_values = {}
         for joystick_node in node.findall("joystick-axis-initial"):
-            vid = safe_read(joystick_node, "id", int)
-            self.joystick_initial_values[vid] = {}
+            id_joy = safe_read(joystick_node, "id", int)
+            self.joystick_initial_values[id_joy] = {}
             for axis_node in joystick_node.findall("axis"):
                 aid = safe_read(axis_node, "id", int)
                 value = safe_read(axis_node, "value", float, 0.0)
-                self.joystick_initial_values[vid][aid] = value
+                self.joystick_initial_values[id_joy][aid] = value
 
         # vjoy initialization values
         self.vjoy_initial_values = {}
@@ -1611,6 +1613,7 @@ class Profile:
                 sub_node = ElementTree.Element(tag)
                 sub_node.set("device-guid", write_guid(entry[tag]["device_guid"]))
                 sub_node.set("axis-id", safe_format(entry[tag]["axis_id"], int))
+                sub_node.set("initial-value", safe_format(entry[tag]["f_initial_value"], float))
                 node.append(sub_node)
             root.append(node)
 
@@ -1714,7 +1717,8 @@ class Profile:
         for tag in ["lower", "upper"]:
             entry[tag] = {
                 "device_guid": parse_guid(node.find(tag).get("device-guid")),
-                "axis_id": safe_read(node.find(tag), "axis-id", int)
+                "axis_id": safe_read(node.find(tag), "axis-id", int),
+                "f_initial_value": safe_read(node.find(tag), "initial-value", float, 0.00),
             }
 
         return entry
