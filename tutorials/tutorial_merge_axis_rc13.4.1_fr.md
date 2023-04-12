@@ -1,14 +1,9 @@
-# :joystick: TUTORIEL :joystick: Comment fusionner vos axes de joysticks sur Joystick Gremlin `RC13.4.2+`
-
-
-:warning: **Attention!** :warning:
-
-Ce tutoriel s'adresse aux utilisateurs des versions `RC13.4.2` et ultérieures. La fusion des axes de la version `RC13.4.1` ne fonctionnait pas avec 100% des périphériques et nécessitait un patch. Si néanmoins vous souhaitez consulter l'ancienne version de ce tutoriel, vous pour le trouver [au lien suivant](./tutorial_merge_axis_rc13.4.1_fr.md).
+# :joystick: TUTORIEL :joystick: Comment fusionner vos axes de joysticks sur Joystick Gremlin `RC13.4.1`
 
 
 ## Étape 1
 
-1. Téléchargez l'archive `joystick_gremlin_rc13.4.x.zip` de la version `RC13.4.2` ou ultérieure de Joystick Gremlin depuis [la page des Releases](https://github.com/Drakehinst/JoystickGremlin/releases).
+1. Téléchargez l'archive `joystick_gremlin_rc13.4.1.zip` de la version RC13.4.1 de Joystick Gremlin depuis [la page des Releases](https://github.com/Drakehinst/JoystickGremlin/releases/tag/Release_Candidate_13.4.1).
 1. Extrayez l'archive dans le dossier de votre choix.
 1. Lancez `joystick_gremlin.exe` depuis le dossier principal.
 
@@ -17,9 +12,9 @@ Ce tutoriel s'adresse aux utilisateurs des versions `RC13.4.2` et ultérieures. 
 
 ## Étape 2
 
-Vérifiez que la version de Joystick Gremlin est bien *"Release Candidate 13.4.2"* ou une version ultérieure dans le menu `Help / About`.
+Vérifiez que la version de Joystick Gremlin est bien *"Release Candidate 13.4.1"* dans le menu `Help / About`.
 
-![Vérification de la version du logiciel dans l'onglet `Help/About`.](../images/tutorial_merge_axis/step_02_rc13.4.2.png)
+![Vérification de la version du logiciel dans l'onglet `Help/About`.](../images/tutorial_merge_axis/step_02.png)
 
 
 ## Étape 3
@@ -49,9 +44,8 @@ Configurez le "Merge Axis" comme dans l'exemple ci-dessous:
 1. L'axe *"Upper Half"* correspond à l'axe de marche avant (par exemple la pédale de droite).
 1. Sélectionnez un axe de vJoy.
 1. Sélectionnez l'opération `Average`.
-1. Ne modifiez **PAS ENCORE** les valeurs *"Initial value"*, elles le seront à l'[étape 8](../tutorials/tutorial_merge_axis_fr.md#étape-8).
 
-![Configuration de la fusion des axes dans le menu `Action / Merge Axis`.](../images/tutorial_merge_axis/step_05_rc13.4.2.png)
+![Configuration de la fusion des axes dans le menu `Action / Merge Axis`.](../images/tutorial_merge_axis/step_05.png)
 
 
 ## Étape 6
@@ -76,11 +70,11 @@ fusionnés (ici `T-Rudder / Axes - Current`, *"Axis 1"* et *"Axis 2"*, c'est-à-
 ## Étape 8
 
 1. Minimisez la fenêtre du `Input Viewer`.
-1. Ouvrez de nouveau la fenêtre de `Merge Axis`.
+1. Allez dans l'onglet `Settings` de la fenêtre principale.
+1. Cherchez la catégorie "Initial Axis Values" correspondant à chacun des deux axes (ici *"T-Rudder - Initial Axis Values"*)
 1. Entrez les valeurs trouvées à l'[étape 7](../tutorials/tutorial_merge_axis_fr.md#étape-7) dans les axes correspondants.
-1. Fermez la fenêtre du `Merge Axis`.
 
-![Réglage des valeurs initiales des axes fusionnés dans l'onglet `Settings`](../images/tutorial_merge_axis/step_08_rc13.4.2.png)
+![Réglage des valeurs initiales des axes fusionnés dans l'onglet `Settings`](../images/tutorial_merge_axis/step_08.png)
 
 
 ## Étape 9

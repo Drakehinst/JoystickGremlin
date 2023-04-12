@@ -72,6 +72,10 @@ class Ui_Gremlin(object):
         self.actionInputRepeater = QtWidgets.QAction(Gremlin)
         self.actionInputRepeater.setCheckable(True)
         self.actionInputRepeater.setObjectName("actionInputRepeater")
+        # TODO TempoAdvanced
+        # self.actionBindTempoAdvanced = QtWidgets.QAction(Gremlin)
+        # self.actionBindTempoAdvanced.setCheckable(True)
+        # self.actionBindTempoAdvanced.setObjectName("actionBindTempoAdvanced")
         self.actionCalibration = QtWidgets.QAction(Gremlin)
         self.actionCalibration.setObjectName("actionCalibration")
         self.actionManageModes = QtWidgets.QAction(Gremlin)
@@ -112,6 +116,8 @@ class Ui_Gremlin(object):
         self.menuFile.addAction(self.actionExit)
         self.menuTools.addAction(self.actionManageModes)
         self.menuTools.addAction(self.actionInputRepeater)
+        # TODO TempoAdvanced
+        # self.menuTools.addAction(self.actionBindTempoAdvanced)
         self.menuTools.addAction(self.actionDeviceInformation)
         self.menuTools.addAction(self.actionCalibration)
         self.menuTools.addAction(self.actionInputViewer)
@@ -157,6 +163,8 @@ class Ui_Gremlin(object):
         self.actionAbout.setText(_translate("Gremlin", "&About"))
         self.actionManageCustomModules.setText(_translate("Gremlin", "&Manage Custom Modules"))
         self.actionInputRepeater.setText(_translate("Gremlin", "Input Repeater"))
+        # TODO TempoAdvanced
+        # self.actionBindTempoAdvanced.setText(_translate("Gremlin", "Bind Tempo Advanced"))
         self.actionCalibration.setText(_translate("Gremlin", "&Calibration"))
         self.actionManageModes.setText(_translate("Gremlin", "Manage Modes"))
         self.actionHTMLCheatsheet.setText(_translate("Gremlin", "HTML Cheatsheet"))

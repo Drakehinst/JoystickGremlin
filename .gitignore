@@ -1,7 +1,7 @@
 *.sw[op]
 *.pyc
 *.wxs
-
+debug.txt
 .idea
 __pycache__
 
@@ -10,3 +10,6 @@ __pycache__
 /dist
 /releases
 /venv
+
+/container_plugins/tempo_advanced
+/gfx/stylesheets

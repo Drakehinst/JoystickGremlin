@@ -392,6 +392,11 @@ class GremlinUi(QtWidgets.QMainWindow):
             el.joystick_event.disconnect(self.repeater.process_event)
             self.repeater.stop()
             self.status_bar_repeater.setText("")
+    
+    # TODO TempoAdvanced
+    # def bind_tempo_advanced(self):
+    #     """Transforms the outputs of Tempo Advanced containers into sequences of all actions."""
+    #     self._profile.settings.b_bind_tempo_advanced = self.ui.actionBindTempoAdvanced.isChecked()
 
     def input_viewer(self):
         """Displays the input viewer dialog."""
@@ -517,6 +522,8 @@ class GremlinUi(QtWidgets.QMainWindow):
         )
         self.ui.actionManageModes.triggered.connect(self.manage_modes)
         self.ui.actionInputRepeater.triggered.connect(self.input_repeater)
+        # TODO TempoAdvanced
+        # self.ui.actionBindTempoAdvanced.triggered.connect(self.bind_tempo_advanced)
         self.ui.actionCalibration.triggered.connect(self.calibration)
         self.ui.actionInputViewer.triggered.connect(self.input_viewer)
         self.ui.actionPDFCheatsheet.triggered.connect(
@@ -716,6 +723,10 @@ class GremlinUi(QtWidgets.QMainWindow):
         self.ui.actionInputRepeater.setIcon(
             QtGui.QIcon("gfx/input_repeater.svg")
         )
+        # TODO TempoAdvanced
+        # self.ui.actionBindTempoAdvanced.setIcon(
+        #     QtGui.QIcon("gfx/calibration.svg")  # TODO use other icon
+        # )
         self.ui.actionCalibration.setIcon(
             QtGui.QIcon("gfx/calibration.svg")
         )
@@ -1186,7 +1197,7 @@ def configure_logger(config):
 
     logger.debug("-" * 80)
     logger.debug(time.strftime("%Y-%m-%d %H:%M"))
-    logger.debug("Starting Joystick Gremlin RC13.4.1")
+    logger.debug("Starting Joystick Gremlin RC13.4.2")
     logger.debug("-" * 80)
 
 
@@ -1263,6 +1274,9 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     app.setWindowIcon(QtGui.QIcon("gfx/icon.png"))
     app.setApplicationDisplayName("Joystick Gremlin")
+
+    # with open("./gfx/stylesheets/breeze_dark.qss","r") as fh:
+    #     app.setStyleSheet(fh.read())
 
     # Ensure joystick devices are correctly setup
     dill.DILL.init()

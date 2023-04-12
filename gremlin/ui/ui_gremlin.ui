@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>358</width>
+    <height>331</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -40,7 +40,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>358</width>
      <height>21</height>
     </rect>
    </property>
@@ -70,6 +70,7 @@
     </property>
     <addaction name="actionManageModes"/>
     <addaction name="actionInputRepeater"/>
+    <addaction name="actionBindTempoAdvanced"/>
     <addaction name="actionDeviceInformation"/>
     <addaction name="actionCalibration"/>
     <addaction name="actionInputViewer"/>
@@ -134,6 +135,9 @@
    <property name="text">
     <string>&amp;New Profile</string>
    </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
   </action>
   <action name="actionSaveProfile">
    <property name="text">
@@ -173,6 +177,14 @@
     <string>Input Repeater</string>
    </property>
   </action>
+  <action name="actionBindTempoAdvanced">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Bind Tempo Advanced</string>
+   </property>
+  </action>
   <action name="actionCalibration">
    <property name="text">
     <string>&amp;Calibration</string>
@@ -206,6 +218,12 @@
   <action name="actionCreate1to1Mapping">
    <property name="text">
     <string>Create 1:1 mapping</string>
+   </property>
+   <property name="visible">
+    <bool>false</bool>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionLogDisplay">

@@ -38,7 +38,7 @@ Joystick Gremlin uses the following software and resources:
 
 # **Building from Source**
 
-Currently the 32-bit version of Python (3.6.8) is needed and the following packages should be installed via PiP to get the source running:
+Currently the 32-bit version of Python (3.8.10) is needed and the following packages should be installed via PiP to get the source running:
 
 ```shell
 > pip install pyinstaller PyQt5==5.13.2 pypiwin32 reportlab

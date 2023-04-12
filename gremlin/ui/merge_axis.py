@@ -64,9 +64,9 @@ class MergeAxisUi(common.BaseDialogUi):
 
             self.from_profile()
 
-    def _add_entry(self, without_saving=False):
+    def _add_entry(self, without_saving=False, i_entry = 0):
         """Adds a new axis to merge configuration entry."""
-        entry = MergeAxisEntry(self.to_profile, self.profile_data)
+        entry = MergeAxisEntry(self.to_profile, self.profile_data, i_entry)
         entry.closed.connect(self._remove_entry)
 
         self.entries.append(entry)
@@ -111,18 +111,20 @@ class MergeAxisUi(common.BaseDialogUi):
                 },
                 "lower": {
                     "device_guid": joy1_sel["device_id"],
-                    "axis_id": joy1_sel["input_id"]
+                    "axis_id": joy1_sel["input_id"],
+                    "f_initial_value": entry.l_initial_axis_values[0]
                 },
                 "upper": {
                     "device_guid": joy2_sel["device_id"],
-                    "axis_id": joy2_sel["input_id"]
+                    "axis_id": joy2_sel["input_id"],
+                    "f_initial_value": entry.l_initial_axis_values[1]
                 }
             })
 
     def from_profile(self):
         """Populates the merge axis entries of the ui from the profile data."""
         entries_to_remove = []
-        for entry in self.profile_data.merge_axes:
+        for i_entry, entry in enumerate(self.profile_data.merge_axes):
             # Show an error if the desired vJoy device is no longer available
             # as an output
             if self.profile_data.settings.vjoy_as_input.get(
@@ -136,7 +138,7 @@ class MergeAxisUi(common.BaseDialogUi):
                     )
                 )
             else:
-                self._add_entry(True)
+                self._add_entry(True, i_entry)
                 new_entry = self.entries[-1]
                 new_entry.select(entry)
 
@@ -169,13 +171,14 @@ class MergeAxisEntry(QtWidgets.QDockWidget):
     palette = QtGui.QPalette()
     palette.setColor(QtGui.QPalette.Background, QtCore.Qt.lightGray)
 
-    def __init__(self, change_cb, profile_data, parent=None):
+    def __init__(self, change_cb, profile_data, i_entry, parent=None):
         """Creates a new instance.
 
         :param change_cb function to execute when changes occur
         :param profile_data profile information
         :param parent the parent of this widget
         """
+        self.change_cb = change_cb
         QtWidgets.QDockWidget.__init__(self, parent)
 
         self.setFeatures(QtWidgets.QDockWidget.DockWidgetClosable)
@@ -203,6 +206,30 @@ class MergeAxisEntry(QtWidgets.QDockWidget):
             lambda x: change_cb(),
             [gremlin.common.InputType.JoystickAxis]
         )
+
+        # Initial axis values setting
+        try:
+            self.l_initial_axis_values = [
+                profile_data.merge_axes[i_entry]["lower"].get("f_initial_value", 0.00),
+                profile_data.merge_axes[i_entry]["upper"].get("f_initial_value", 0.00)
+            ]
+        except IndexError:
+            # in case no merge axis is found at given index and is currently being created
+            self.l_initial_axis_values = [0.00, 0.00]
+        self.wdg_initial_axis_value_lower = gremlin.ui.common.DynamicDoubleSpinBox()
+        self.wdg_initial_axis_value_lower.setDecimals(2)
+        self.wdg_initial_axis_value_lower.setRange(-1.0, 1.0)
+        self.wdg_initial_axis_value_lower.setSingleStep(0.05)
+        self.wdg_initial_axis_value_lower.setValue(self.l_initial_axis_values[0])
+        self.wdg_initial_axis_value_lower.valueChanged.connect(self._cb_initial_axis_values_lower_changed)
+        self.wdg_initial_axis_value_lower.setMaximumWidth(150)
+        self.wdg_initial_axis_value_upper = gremlin.ui.common.DynamicDoubleSpinBox()
+        self.wdg_initial_axis_value_upper.setDecimals(2)
+        self.wdg_initial_axis_value_upper.setRange(-1.0, 1.0)
+        self.wdg_initial_axis_value_upper.setSingleStep(0.05)
+        self.wdg_initial_axis_value_upper.setValue(self.l_initial_axis_values[1])
+        self.wdg_initial_axis_value_upper.setMaximumWidth(150)
+        self.wdg_initial_axis_value_upper.valueChanged.connect(self._cb_initial_axis_values_upper_changed)
 
         # Operation selection
         self.operation_selector = QtWidgets.QComboBox()
@@ -240,6 +267,10 @@ class MergeAxisEntry(QtWidgets.QDockWidget):
         self.main_layout.addWidget(self.vjoy_selector, 1, 2)
         self.main_layout.addWidget(self.operation_selector, 1, 3)
         self.main_layout.addWidget(self.mode_selector, 1, 4)
+        self.main_layout.addWidget(QtWidgets.QLabel("Initial value:"), 2, 0, QtCore.Qt.AlignCenter)
+        self.main_layout.addWidget(self.wdg_initial_axis_value_lower, 3, 0, QtCore.Qt.AlignCenter)
+        self.main_layout.addWidget(QtWidgets.QLabel("Initial value:"), 2, 1, QtCore.Qt.AlignCenter)
+        self.main_layout.addWidget(self.wdg_initial_axis_value_upper, 3, 1, QtCore.Qt.AlignCenter)
 
     def closeEvent(self, event):
         """Emits the closed event when this widget is being closed.
@@ -286,9 +317,30 @@ class MergeAxisEntry(QtWidgets.QDockWidget):
             self.mode_selector.selector.setCurrentIndex(
                 self.mode_selector.mode_list.index(data["mode"])
             )
+        
+        self.l_initial_axis_values = [
+            data["lower"]["f_initial_value"],
+            data["upper"]["f_initial_value"]
+        ]
 
         self.operation_selector.setCurrentText(
             gremlin.common.MergeAxisOperation.to_string(
                 data["operation"]
             ).capitalize()
         )
+    
+    def _cb_initial_axis_values_lower_changed(self, value):
+        """Updates the lower initial axis value.
+
+        :param initial value of the axis
+        """
+        self.l_initial_axis_values[0] = round(value, 2)
+        self.change_cb()
+    
+    def _cb_initial_axis_values_upper_changed(self, value):
+        """Updates the upper initial axis value.
+
+        :param initial value of the axis
+        """
+        self.l_initial_axis_values[1] = round(value, 2)
+        self.change_cb()
