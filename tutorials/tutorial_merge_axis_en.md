@@ -92,7 +92,7 @@ Configure the "Merge Axis" as shown in the example below:
     1. Pressed the forward movement physical axis as far **as it will go** (for example, the right pedal).
     1. Check that the value of the vJoy axis goes from `0%` to `100%` **(and not from `0%` to `50%`)**.
     1. While keeping the first axis firmly pressed, press the backward movement physical axis **as far as it will go** (for example, the left pedal).
-    1. Check that the value of the vJoy axis goes from `100%` to `0%` **(and doesn't suddenly jump from `50%` à `100%`, before decreasing to `0%`, otherwise you will have to check your configuration again from [step 5](../tutorials/tutorial_merge_axis_en.md#step-5))**.
+    1. Check that the value of the vJoy axis goes from `100%` to `0%` **(and doesn't suddenly jump from `50%` à `100%`, before decreasing to `0%`, otherwise you will have to check your configuration again from [step 5](../tutorials/tutorial_merge_axis_en.md#step-5))**.
     1. **Completely** release the forward movement physical axis.
     1. Check that the value of the vJoy axis goes from `0%` to `-100%`.
     
