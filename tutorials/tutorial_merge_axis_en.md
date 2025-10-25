@@ -78,7 +78,7 @@ Configure the "Merge Axis" as shown in the example below:
 1. Minimize the `Input Viewer` window (we'll get back to it for the final test).
 1. Open the `Merge Axis` window again.
 1. Enter each *"Initial value"* found in [step 7](../tutorials/tutorial_merge_axis_en.md#step-7) under the corresponding axes.
-1. Fermez la fenêtre du `Merge Axis`.
+1. Close the `Merge Axis` window.
 
 ![Setting the initial values of both physical axes in the `Merge Axis` menu](../images/tutorial_merge_axis/step_08_rc13.4.2.png)
 
@@ -104,7 +104,7 @@ Configure the "Merge Axis" as shown in the example below:
 
 **From now on, don't forget to always start the Joystick Gremlin version you have downloaded and extracted at [step 1](../tutorials/tutorial_merge_axis_en.md#step-1)!**
 
-[The official versionb 13](https://github.com/WhiteMagic/JoystickGremlin/releases) is not longer developed by @WhiteMagic, the creator of Joystick Gremlin, who is now fully committed to [developing version 14](https://github.com/WhiteMagic/JoystickGremlin/tree/develop).
+[The official version 13](https://github.com/WhiteMagic/JoystickGremlin/releases) is not longer developed by @WhiteMagic, the creator of Joystick Gremlin, who is now fully committed to [developing version 14](https://github.com/WhiteMagic/JoystickGremlin/tree/develop).
 
 So, when in doubt, update your shortcut to redirect them to the version downloaded in this tutorial.
 
