@@ -36,7 +36,7 @@ Delete all `Remap` type actions for both axes you want to merge (here *"T-Rudder
 
 ![Deletion of all `Remap` type actions for both physical axes to merge.](../images/tutorial_merge_axis/step_04.png)
 
-:warning: **Warning !** :warning:
+:warning: **Warning!** :warning:
 
 Depending on configurations, the `Response Curve` action types may prevent the correct axes fusion calculation by the `Merge Axis` function. If you do not obtain the desired result at the end of this tutorial, please also delete those `Response Curve` actions associated to either of the physical axes you want to merged, and instead reconfigure one single `Response Curve` in the corresponding vJoy tab for the output axis you will have selected after in the `Merge Axis` configuration. 😉
 
