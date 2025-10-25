@@ -96,7 +96,7 @@ Configure the "Merge Axis" as shown in the example below:
     1. **Completely** release the forward movement physical axis.
     1. Check that the value of the vJoy axis goes from `0%` to `-100%`.
     
-**:rocket: IF everything is working as intended, you're done with the configuration! 😄**
+**:rocket: If everything is working as intended, you're done with the configuration! 😄**
 
 ---
 
