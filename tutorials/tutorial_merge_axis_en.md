@@ -104,7 +104,7 @@ Configure the "Merge Axis" as shown in the example below:
 
 **From now on, don't forget to always start the Joystick Gremlin version you have downloaded and extracted at [step 1](../tutorials/tutorial_merge_axis_en.md#step-1)!**
 
-[The official version 13](https://github.com/WhiteMagic/JoystickGremlin/releases) is not longer developed by @WhiteMagic, the creator of Joystick Gremlin, who is now fully committed to [developing version 14](https://github.com/WhiteMagic/JoystickGremlin/tree/develop).
+[The official version 13](https://github.com/WhiteMagic/JoystickGremlin/releases) is no longer developed by @WhiteMagic, the creator of Joystick Gremlin, who is now fully committed to [developing version 14](https://github.com/WhiteMagic/JoystickGremlin/tree/develop).
 
 So, when in doubt, update your shortcut to redirect them to the version downloaded in this tutorial.
 
