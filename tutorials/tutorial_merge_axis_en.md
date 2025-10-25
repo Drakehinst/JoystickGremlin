@@ -106,6 +106,6 @@ Configure the "Merge Axis" as shown in the example below:
 
 [The official version 13](https://github.com/WhiteMagic/JoystickGremlin/releases) is no longer developed by @WhiteMagic, the creator of Joystick Gremlin, who is now fully committed to [developing version 14](https://github.com/WhiteMagic/JoystickGremlin/tree/develop).
 
-So, when in doubt, update your shortcut to redirect them to the version downloaded in this tutorial.
+So, when in doubt, update your shortcuts to redirect them to the version downloaded in this tutorial.
 
 **The profile you saved in this version is 100% retro-compatible with the official version `13.3` of Joystick Gremlin, though the `Merge Axis` will have the disruptive behavior described in [step 9](../tutorials/tutorial_merge_axis_en.md#step-9) if you use it instead of my patched version. 😉**
