@@ -32,7 +32,7 @@ Load your usual profile then check that all your peripherals are detected (joyst
 
 ## Step 4
 
-Delete all the `Remap` type actions on both axes your want to merge (here *"T-Rudder - X Axis"* and *"T-Rudder - Y Axis"*). For example, in the profile below, no action is associated to neither axis.
+Delete all `Remap` type actions for both axes you want to merge (here *"T-Rudder - X Axis"* and *"T-Rudder - Y Axis"*). For example, in the profile below, no action is associated to neither axis.
 
 ![Deletion of all `Remap` type actions for both physical axes to merge.](../images/tutorial_merge_axis/step_04.png)
 
