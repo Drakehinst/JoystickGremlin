@@ -6,6 +6,7 @@
 
 This tutorial is meant only for users of versions `RC13.4.2` and later. The `Merge Axis` function in version `RC13.4.1` didn't work properly with all peripherals and required a bugfix. Nevertheless, the old version of this tutorial is still available [at the following link](./tutorial_merge_axis_rc13.4.1_fr.md) if case you need it (in French only at the moment).
 
+Also, if you face any issue while using my patched version for Joystick Gremlin, it's easiest to reach me over on the [HOTAS Discord server](https://discord.gg/hotas). Simply ping me @Drakehinst in the [joystick-gremlin Q&A channel](https://discord.com/channels/438688364359581707/528501166385135636). 😉
 
 ## Step 1
 
