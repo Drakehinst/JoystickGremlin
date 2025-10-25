@@ -1,6 +1,6 @@
 # :joystick: TUTORIEL :joystick: Comment fusionner vos axes de joysticks sur Joystick Gremlin `RC13.4.2+`
 
-🇬🇧 The English version of this tutorial is available [here](https://github.com/Drakehinst/JoystickGremlin/edit/rc13.4/tutorials/tutorial_merge_axis_en.md)! 
+🇬🇧 The English version of this tutorial is available [here](https://github.com/Drakehinst/JoystickGremlin/blob/rc13.4/tutorials/tutorial_merge_axis_en.md)! 
 
 :warning: **Attention !** :warning:
 
