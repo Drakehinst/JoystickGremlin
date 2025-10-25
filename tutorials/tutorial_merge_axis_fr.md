@@ -6,6 +6,8 @@
 
 Ce tutoriel s'adresse aux utilisateurs des versions `RC13.4.2` et ultérieures. La fusion des axes de la version `RC13.4.1` ne fonctionnait pas avec 100% des périphériques et nécessitait un patch. Si néanmoins vous souhaitez consulter l'ancienne version de ce tutoriel, vous pour le trouver [au lien suivant](./tutorial_merge_axis_rc13.4.1_fr.md).
 
+Si vous rencontrez quelque problème que ce soit avec ma version patchée de Joystick Gremlin, le plus simple est de rejoindre le [serveur Discord HOTAS](https://discord.gg/hotas) et de me pinger @Drakehinst dans le [canal FAQ joystick-gremlin](https://discord.com/channels/438688364359581707/528501166385135636). Vu que toute conversation doit être faite en Anglais là-bas, si ce n'est pas votre tasse de thé vous pourrez me MP après avoir rejoint le serveur. 😉
+
 
 ## Étape 1
 
